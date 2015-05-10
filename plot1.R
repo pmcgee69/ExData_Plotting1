@@ -15,7 +15,7 @@ data_start  <- 66637
 data_length <- 2881
 
 hpc=read.table("household_power_consumption.txt", sep=";", skip=data_start, nrow = data_length,
-     col.names = colnames(read.table("household_power_consumption.txt", nrow = 1, header = TRUE,sep=";")))
+     col.names = colnames(read.table("household_power_consumption.txt", nrow = 1, header = TRUE, sep=";")))
 
 if ((hpc$Date[1] != "1/2/2007") | (hpc$Time[1] != "00:00:00")) 
      stop("Data file has changed (Start).")
@@ -25,7 +25,7 @@ if ((hpc$Date[data_length] != "3/2/2007") | (hpc$Time[data_length] != "00:00:00"
 
 ## Create .png file plot in default 480x480 size
 
-png(file = "plot1.png", bg = "transparent")
+png(file = "plot1.png")
 hist(hpc$Global_active_power, xlab="Global Active Power (kilowatts)", ylab="Frequency", 
      main="Global Active Power", col="red", xlim=c(0,7.5),  ylim=c(0, 1200))
 dev.off()

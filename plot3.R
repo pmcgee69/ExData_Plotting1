@@ -43,7 +43,7 @@ plot(hpc$D.T, hpc$max, type="n", ylab="Energy sub metering", xlab="")
 for (i in 1:3) 
     lines(hpc$D.T, hpc[[ fields[i] ]], col=colours[[i]])
 legend("topright", fields, col=colours, lwd=1)
-dev.off()
 
 ## Done
+dev.off()
 

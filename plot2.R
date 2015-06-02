@@ -23,18 +23,14 @@ if ((hpc$Date[1] != "1/2/2007") | (hpc$Time[1] != "00:00:00"))
 if ((hpc$Date[data_length] != "3/2/2007") | (hpc$Time[data_length] != "00:00:00")) 
      stop("Data file has changed (End).")
 
-
 ## Date and Time -> DateTime
-
 hpc$D.T <- strptime(with(hpc,paste(Date,Time)), "%d/%m/%Y %H:%M:%S")
 
-
 ## Create .png file plot in default 480x480 size
-
 png(file = "plot2.png")
-plot(hpc$D.T, hpc$Global_active_power, type="n", ylab="Global Active Power (kilowatts)",
-      xlab="")
-lines(hpc$D.T, hpc$Global_active_power)
+plot(hpc$D.T, hpc$Global_active_power, type="l", 
+                                       ylab="Global Active Power (kilowatts)",
+                                       xlab="")
 dev.off()
 
 ## Done

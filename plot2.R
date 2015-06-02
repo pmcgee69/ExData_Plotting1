@@ -31,7 +31,7 @@ png(file = "plot2.png")
 plot(hpc$D.T, hpc$Global_active_power, type="l", 
                                        ylab="Global Active Power (kilowatts)",
                                        xlab="")
+## Done
 dev.off()
 
-## Done
 

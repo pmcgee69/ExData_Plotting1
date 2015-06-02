@@ -23,13 +23,12 @@ if ((hpc$Date[1] != "1/2/2007") | (hpc$Time[1] != "00:00:00"))
 if ((hpc$Date[data_length] != "3/2/2007") | (hpc$Time[data_length] != "00:00:00")) 
      stop("Data file has changed (End).")
 
-
 ## Date and Time -> DateTime
 hpc$D.T <- strptime(with(hpc,paste(Date,Time)), "%d/%m/%Y %H:%M:%S")
 
 ## create empty list and add plot fields
 fields <- vector()
-for (i in 1:3) fields[i] <- paste0("Sub_metering_",as.character(i))
+for (i in 1:3) fields[i] <- paste0("Sub_metering_", i)
 
 ## vector of plot colours
 colours <- c("black","red","blue")
@@ -38,14 +37,12 @@ colours <- c("black","red","blue")
 df      <- data.frame(hpc$Sub_metering_1, hpc$Sub_metering_2, hpc$Sub_metering_3)
 hpc$max <- apply(df,1,max)
 
-
 ## Create .png file plot in default 480x480 size
-
 png(file = "plot3.png")
 plot(hpc$D.T, hpc$max, type="n", ylab="Energy sub metering", xlab="")
 for (i in 1:3) 
     lines(hpc$D.T, hpc[[ fields[i] ]], col=colours[[i]])
-legend("topright", fields, col=colours, lwd=1, y.intersp=1,  text.width=50000)
+legend("topright", fields, col=colours, lwd=1)
 dev.off()
 
 ## Done

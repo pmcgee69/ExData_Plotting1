@@ -23,7 +23,6 @@ if ((hpc$Date[1] != "1/2/2007") | (hpc$Time[1] != "00:00:00"))
 if ((hpc$Date[data_length] != "3/2/2007") | (hpc$Time[data_length] != "00:00:00")) 
      stop("Data file has changed (End).")
 
-
 ## Date and Time -> DateTime
 hpc$D.T <- strptime(with(hpc,paste(Date,Time)), "%d/%m/%Y %H:%M:%S")
 
@@ -38,7 +37,6 @@ colours <- c("black","red","blue")
 df      <- data.frame(hpc$Sub_metering_1, hpc$Sub_metering_2, hpc$Sub_metering_3)
 hpc$max <- apply(df,1,max)
 
-
 ## Create .png file plot in default 480x480 size
 png(file = "plot4.png")
 
@@ -47,31 +45,20 @@ plot.new()
 par(mfrow = c(2, 2), mar = c(4, 4, 3, 3))
 
 ## Plot 4.1 - Global_active_power
-
-plot(hpc$D.T, hpc$Global_active_power, type="n", ylab="Global Active Power", xlab="")
-lines(hpc$D.T, hpc$Global_active_power)
-
+plot(hpc$D.T, hpc$Global_active_power, type="l", ylab="Global Active Power", xlab="")
 
 ## Plot 4.2 - Voltage
-
-plot(hpc$D.T, hpc$Voltage, type="n", ylab="Voltage", xlab="datetime")
-lines(hpc$D.T, hpc$Voltage)
-
+plot(hpc$D.T, hpc$Voltage, type="l", ylab="Voltage", xlab="datetime")
 
 ## Plot 4.3 - Sub_metering
-
 plot(hpc$D.T, hpc$max, type="n", ylab="Energy sub metering", xlab="")
 for (i in 1:3) 
     lines(hpc$D.T, hpc[[ fields[i] ]], col=colours[[i]])
-legend("topright", fields, col=colours, bty="n", lwd=1,  cex=0.95, y.intersp=.9,  
-       text.width=80000)
+legend("topright", fields, col=colours, bty="n", lwd=1)
 
 ## Plot 4.4 - Global_reactive_power
-
-plot(hpc$D.T, hpc$Global_reactive_power, type="n", ylab="Global_reactive_power",
-     xlab="datetime")
-lines(hpc$D.T, hpc$Global_reactive_power)
-
+plot(hpc$D.T, hpc$Global_reactive_power, type="l", ylab="Global_reactive_power",
+                                                   xlab="datetime")
 
 ## Done
 dev.off()

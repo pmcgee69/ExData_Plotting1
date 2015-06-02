@@ -26,8 +26,10 @@ if ((hpc$Date[data_length] != "3/2/2007") | (hpc$Time[data_length] != "00:00:00"
 ## Create .png file plot in default 480x480 size
 
 png(file = "plot1.png")
-hist(hpc$Global_active_power, xlab="Global Active Power (kilowatts)", ylab="Frequency", 
-     main="Global Active Power", col="red", xlim=c(0,7.5),  ylim=c(0, 1200))
+hist(hpc$Global_active_power, xlab="Global Active Power (kilowatts)", 
+                              ylab="Frequency", 
+                              main="Global Active Power", 
+                              col="red")
 dev.off()
 
 ## Done
